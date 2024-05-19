@@ -1,4 +1,5 @@
 //select the element
+
 let pencilElement = document.querySelector("#pencil");
 let eraserElement = document.querySelector("#eraser");
 let stickyElement = document.querySelector("#sticky");
@@ -16,6 +17,9 @@ eraserElement.addEventListener("click", function tellEraser() {
 });
 stickyElement.addEventListener("click", function tellSticky() {
   console.log("Sticky is clicked");
+});
+uploadElement.addEventListener("click", function tellUpload() {
+  console.log("Upload is clicked");
 });
 downloadElement.addEventListener("click", function tellDownload() {
   console.log("Download is clicked");
