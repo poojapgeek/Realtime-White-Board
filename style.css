@@ -1,0 +1,18 @@
+body {
+  margin: 0px;
+}
+* {
+  box-sizing: border-box;
+}
+.tool-img {
+  height: 3rem;
+}
+
+.toolbar-options {
+  display: flex;
+}
+.toolbar {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+}
