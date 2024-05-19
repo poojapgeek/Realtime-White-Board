@@ -30,3 +30,6 @@ undoElement.addEventListener("click", function tellUndo() {
 redoElement.addEventListener("click", function tellRedo() {
   console.log("redo is clicked");
 });
+let canvas = document.querySelector("#board");
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
