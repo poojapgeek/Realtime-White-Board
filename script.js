@@ -33,3 +33,4 @@ redoElement.addEventListener("click", function tellRedo() {
 let canvas = document.querySelector("#board");
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
+ghggbcgfdgf;
