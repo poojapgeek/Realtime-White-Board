@@ -16,3 +16,23 @@ body {
   justify-content: center;
   gap: 3rem;
 }
+.sticky {
+  height: 10rem;
+  width: 6rem;
+  display: absolute;
+  left: 30vw;
+  top: 30vh;
+}
+
+.nav {
+  border: 1px solid black;
+  background-color: bisque;
+  height: 20%;
+  display: flex;
+  justify-content: space-between;
+  padding: 10%;
+}
+.text-area {
+  height: 80%;
+  width: 100%;
+}
