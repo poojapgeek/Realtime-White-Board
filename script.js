@@ -23,21 +23,21 @@ for (let i = 0; i < toolArr.length; i++) {
       tool.strokeStyle = "white";
       console.log("eraser is clicked");
       tool.lineWidth = 5;
-    } else if (toolName == "download") {
+    } else if (toolname == "sticky") {
+      currentTool = "sticky";
+      createSticky();
+    } else if (toolname == "download") {
       console.log("download clicked");
       currentTool = "download";
       downloadFile();
-    } else if (toolName == "sticky") {
-      currentTool = "sticky";
-      createSticky();
-    } else if (toolName == "upload") {
+    } else if (toolname == "upload") {
       currentTool = "upload";
       console.log(e.target);
       uploadFile();
-    } else if (toolName == "undo") {
+    } else if (toolname == "undo") {
       currentTool = "undo";
       undoFN();
-    } else if (toolName == "redo") {
+    } else if (toolname == "redo") {
       console.log("redo clicked");
       redoFN();
     }
@@ -70,4 +70,48 @@ let toolBar = document.querySelector(".toolbar");
 function getYDelta() {
   let heightoftoolBar = toolBar.getBoundingClientRect().height;
   return heightoftoolBar;
+}
+
+//sticky function
+function createSticky() {
+  /*<div class="sticky">
+  <div class="nav">
+    <div class="minimize">min</div>
+    <div class="close">X</div>
+  </div>
+  <textarea class="text-area"></textarea>
+</div>
+*/
+  //element creation
+  let stickydiv = document.createElement("div");
+  let navdiv = document.createElement("div");
+  let mindiv = document.createElement("div");
+  let closediv = document.createElement("div");
+  let textarea = document.createElement("textarea");
+
+  mindiv.innerText = "min";
+  closediv.innerText = "X";
+
+  //class styling
+  stickydiv.setAttribute("class", "sticky");
+  navdiv.setAttribute("class", "nav");
+  mindiv.setAttribute("class", "minimize");
+  closediv.setAttribute("class", "close");
+  textarea.setAttribute("class", "text-area");
+  // html structure
+  stickydiv.appendChild(navdiv);
+  stickydiv.appendChild(textarea);
+  navdiv.appendChild(mindiv);
+  navdiv.appendChild(closediv);
+  //add it to the page
+  document.body.appendChild(stickydiv);
+
+  let isMinimized = false;
+  closediv.addEventListener("click", function () {
+    stickydiv.remove();
+  });
+  mindiv.addEventListener("click", function () {
+    textarea.style.display = isMinimized == true ? "block" : "none";
+    isMinimized = !isMinimized;
+  });
 }
