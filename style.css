@@ -5,7 +5,7 @@ body {
   box-sizing: border-box;
 }
 .tool-img {
-  height: 3rem;
+  height: 4rem;
 }
 
 .toolbar-options {
@@ -19,9 +19,9 @@ body {
 .sticky {
   height: 10rem;
   width: 6rem;
-  display: absolute;
-  left: 30vw;
-  top: 30vh;
+  position: absolute;
+  left: 40vw;
+  top: 40vh;
 }
 
 .nav {
