@@ -8,7 +8,7 @@ let tool = canvas.getContext("2d");
 
 let isDrawing = false; //flag
 
-//***************tool selector logic************************************
+/***************tool selector logic************************************/
 let toolArr = document.querySelectorAll(".tool");
 let currentTool = "pencil";
 for (let i = 0; i < toolArr.length; i++) {
@@ -113,5 +113,31 @@ function createSticky() {
   mindiv.addEventListener("click", function () {
     textarea.style.display = isMinimized == true ? "block" : "none";
     isMinimized = !isMinimized;
+  });
+  let isStickyDown = false;
+  navdiv.addEventListener("mousedown", function (e) {
+    //initial point
+    initialX = e.clientX;
+    initialY = e.clientY;
+    isStickyDown = true;
+  });
+  navdiv.addEventListener("mousemove", function (e) {
+    if (isStickyDown == true) {
+      //final point
+      let finalX = e.clientX;
+      let finalY = e.clientY;
+      //distance
+      let dx = finalX - initialX;
+      let dy = finalY - initialY;
+      //move sticky
+      let { top, left } = stickydiv.getBoundingClientRect();
+      stickydiv.style.top = top + dy + "px";
+      stickydiv.style.left = left + dx + "px";
+      initialX = finalX;
+      initialY = finalY;
+    }
+    navdiv.addEventListener("mouseup", function () {
+      isStickyDown = false;
+    });
   });
 }
