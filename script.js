@@ -14,6 +14,7 @@ let pencilControls = document.querySelector("#pencilControls");
 let colorPicker = document.querySelector("#colorPicker");
 let lineWidth = document.querySelector("#lineWidth");
 let toolArr = document.querySelectorAll(".tool");
+let isMinimized = false;
 let currentTool = "pencil";
 for (let i = 0; i < toolArr.length; i++) {
   toolArr[i].addEventListener("click", function (e) {
@@ -23,11 +24,9 @@ for (let i = 0; i < toolArr.length; i++) {
       tool.strokeStyle = colorPicker.value; // set to current color
       tool.lineWidth = lineWidth.value; // set to current line width
       console.log("pencil clicked");
-      pencilControls.style.display = "block"; // Show the pencil controls
-    } else {
-      pencilControls.style.display = "none"; // Hide the pencil controls
-    }
-    if (toolname == "eraser") {
+      pencilControls.style.display = isMinimized == true ? "block" : "none";
+      isMinimized = !isMinimized;
+    } else if (toolname == "eraser") {
       currentTool = "eraser";
       tool.strokeStyle = "white";
       console.log("eraser is clicked");
