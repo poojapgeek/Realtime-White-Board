@@ -7,7 +7,8 @@ canvas.height = window.innerHeight;
 let tool = canvas.getContext("2d");
 
 let isDrawing = false; //flag
-
+tool.strokeStyle = "black"; // default pencil color
+tool.lineWidth = 1; // default pencil line width
 /***************tool selector logic************************************/
 let toolArr = document.querySelectorAll(".tool");
 let currentTool = "pencil";
@@ -16,7 +17,8 @@ for (let i = 0; i < toolArr.length; i++) {
     const toolname = toolArr[i].id;
     if (toolname == "pencil") {
       currentTool = "pencil";
-      tool.strokeStyle = "blue";
+      tool.strokeStyle = colorPicker.value; // set to current color
+      tool.lineWidth = lineWidth.value; // set to current line width
       console.log("pencil clicked");
     } else if (toolname == "eraser") {
       currentTool = "eraser";
