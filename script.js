@@ -100,7 +100,7 @@ function createOuterShell(textarea) {
   let mindiv = document.createElement("div");
   let closediv = document.createElement("div");
 
-  mindiv.innerText = "min";
+  mindiv.innerText = "--";
   closediv.innerText = "X";
 
   //class styling
