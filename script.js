@@ -10,6 +10,9 @@ let isDrawing = false; //flag
 tool.strokeStyle = "black"; // default pencil color
 tool.lineWidth = 1; // default pencil line width
 /***************tool selector logic************************************/
+let pencilControls = document.querySelector("#pencilControls");
+let colorPicker = document.querySelector("#colorPicker");
+let lineWidth = document.querySelector("#lineWidth");
 let toolArr = document.querySelectorAll(".tool");
 let currentTool = "pencil";
 for (let i = 0; i < toolArr.length; i++) {
@@ -20,7 +23,11 @@ for (let i = 0; i < toolArr.length; i++) {
       tool.strokeStyle = colorPicker.value; // set to current color
       tool.lineWidth = lineWidth.value; // set to current line width
       console.log("pencil clicked");
-    } else if (toolname == "eraser") {
+      pencilControls.style.display = "block"; // Show the pencil controls
+    } else {
+      pencilControls.style.display = "none"; // Hide the pencil controls
+    }
+    if (toolname == "eraser") {
       currentTool = "eraser";
       tool.strokeStyle = "white";
       console.log("eraser is clicked");
