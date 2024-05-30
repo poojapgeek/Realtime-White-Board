@@ -146,6 +146,7 @@ function createSticky() {
   textarea.setAttribute("class", "text-area");
   stickydiv.appendChild(textarea);
 }
+
 let inputTag = document.querySelector(".input-tag");
 function uploadFile() {
   // 1. input tag -> file(<input type="file">) [hide] -> css
