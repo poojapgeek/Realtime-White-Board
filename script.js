@@ -13,8 +13,8 @@ let pencilControls = document.querySelector("#pencilControls");
 let colorPicker = document.querySelector("#colorPicker");
 let lineWidth = document.querySelector("#lineWidth");
 let toolArr = document.querySelectorAll(".tool");
-tool.strokeStyle = colorPicker.value; // default pencil color
-tool.lineWidth = lineWidth.value; // default pencil line width
+//tool.strokeStyle = colorPicker.value; // default pencil color
+//tool.lineWidth = lineWidth.value; // default pencil line width
 let isMinimized = false;
 let currentTool = "pencil";
 // Add event listeners to color picker and line width
