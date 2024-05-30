@@ -36,3 +36,10 @@ body {
   height: 80%;
   width: 100%;
 }
+.input-tag {
+  display: none;
+}
+.upload-img {
+  height: 80%;
+  width: 100%;
+}

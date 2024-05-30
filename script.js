@@ -32,7 +32,7 @@ for (let i = 0; i < toolArr.length; i++) {
       downloadFile();
     } else if (toolname == "upload") {
       currentTool = "upload";
-      console.log(e.target);
+      //console.log(e.target);
       uploadFile();
     } else if (toolname == "undo") {
       currentTool = "undo";
@@ -71,23 +71,13 @@ function getYDelta() {
   let heightoftoolBar = toolBar.getBoundingClientRect().height;
   return heightoftoolBar;
 }
-
-//sticky function
-function createSticky() {
-  /*<div class="sticky">
-  <div class="nav">
-    <div class="minimize">min</div>
-    <div class="close">X</div>
-  </div>
-  <textarea class="text-area"></textarea>
-</div>
-*/
+//create outershell
+function createOuterShell() {
   //element creation
   let stickydiv = document.createElement("div");
   let navdiv = document.createElement("div");
   let mindiv = document.createElement("div");
   let closediv = document.createElement("div");
-  let textarea = document.createElement("textarea");
 
   mindiv.innerText = "min";
   closediv.innerText = "X";
@@ -97,10 +87,8 @@ function createSticky() {
   navdiv.setAttribute("class", "nav");
   mindiv.setAttribute("class", "minimize");
   closediv.setAttribute("class", "close");
-  textarea.setAttribute("class", "text-area");
   // html structure
   stickydiv.appendChild(navdiv);
-  stickydiv.appendChild(textarea);
   navdiv.appendChild(mindiv);
   navdiv.appendChild(closediv);
   //add it to the page
@@ -136,8 +124,44 @@ function createSticky() {
       initialX = finalX;
       initialY = finalY;
     }
-    navdiv.addEventListener("mouseup", function () {
-      isStickyDown = false;
-    });
+  });
+  navdiv.addEventListener("mouseup", function () {
+    isStickyDown = false;
+  });
+  return stickydiv;
+}
+
+//sticky function
+function createSticky() {
+  /*<div class="sticky">
+  <div class="nav">
+    <div class="minimize">min</div>
+    <div class="close">X</div>
+  </div>
+  <textarea class="text-area"></textarea>
+</div>
+*/
+  let stickydiv = createOuterShell();
+  let textarea = document.createElement("textarea");
+  textarea.setAttribute("class", "text-area");
+  stickydiv.appendChild(textarea);
+}
+let inputTag = document.querySelector(".input-tag");
+function uploadFile() {
+  // 1. input tag -> file(<input type="file">) [hide] -> css
+  // 2. click image icon -> input tag click
+  inputTag.click();
+  // 3. file read input tag
+  inputTag.addEventListener("change", function () {
+    //4.add it to UI
+    let data = inputTag.files[0];
+    let img = document.createElement("img");
+    //src -> file url
+    let url = URL.createObjectURL(data);
+    img.src = url;
+    img.setAttribute("class", "upload-img");
+    // add it to the stickydiv
+    let stickydiv = createOuterShell();
+    stickydiv.appendChild(img);
   });
 }
