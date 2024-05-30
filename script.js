@@ -7,15 +7,28 @@ canvas.height = window.innerHeight;
 let tool = canvas.getContext("2d");
 
 let isDrawing = false; //flag
-tool.strokeStyle = "black"; // default pencil color
-tool.lineWidth = 1; // default pencil line width
+
 /***************tool selector logic************************************/
 let pencilControls = document.querySelector("#pencilControls");
 let colorPicker = document.querySelector("#colorPicker");
 let lineWidth = document.querySelector("#lineWidth");
 let toolArr = document.querySelectorAll(".tool");
+tool.strokeStyle = colorPicker.value; // default pencil color
+tool.lineWidth = lineWidth.value; // default pencil line width
 let isMinimized = false;
 let currentTool = "pencil";
+// Add event listeners to color picker and line width
+colorPicker.addEventListener("input", function () {
+  if (currentTool === "pencil") {
+    tool.strokeStyle = colorPicker.value;
+  }
+});
+
+lineWidth.addEventListener("input", function () {
+  if (currentTool === "pencil") {
+    tool.lineWidth = lineWidth.value;
+  }
+});
 for (let i = 0; i < toolArr.length; i++) {
   toolArr[i].addEventListener("click", function (e) {
     const toolname = toolArr[i].id;
