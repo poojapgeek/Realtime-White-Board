@@ -72,7 +72,7 @@ function getYDelta() {
   return heightoftoolBar;
 }
 //create outershell
-function createOuterShell() {
+function createOuterShell(textarea) {
   //element creation
   let stickydiv = document.createElement("div");
   let navdiv = document.createElement("div");
@@ -141,9 +141,10 @@ function createSticky() {
   <textarea class="text-area"></textarea>
 </div>
 */
-  let stickydiv = createOuterShell();
+
   let textarea = document.createElement("textarea");
   textarea.setAttribute("class", "text-area");
+  let stickydiv = createOuterShell(textarea);
   stickydiv.appendChild(textarea);
 }
 
@@ -162,7 +163,7 @@ function uploadFile() {
     img.src = url;
     img.setAttribute("class", "upload-img");
     // add it to the stickydiv
-    let stickydiv = createOuterShell();
+    let stickydiv = createOuterShell(img);
     stickydiv.appendChild(img);
   });
 }

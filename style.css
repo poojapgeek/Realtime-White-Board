@@ -10,6 +10,7 @@ body {
 
 .toolbar-options {
   display: flex;
+  position: fixed;
 }
 .toolbar {
   display: flex;
