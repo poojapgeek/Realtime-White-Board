@@ -47,14 +47,14 @@ for (let i = 0; i < toolArr.length; i++) {
     } else if (toolname == "sticky") {
       currentTool = "sticky";
       createSticky();
-    } else if (toolname == "download") {
-      console.log("download clicked");
-      currentTool = "download";
-      downloadFile();
     } else if (toolname == "upload") {
       currentTool = "upload";
       //console.log(e.target);
       uploadFile();
+    } else if (toolname == "download") {
+      console.log("download clicked");
+      currentTool = "download";
+      downloadFile();
     } else if (toolname == "undo") {
       currentTool = "undo";
       undoFN();
@@ -187,4 +187,22 @@ function uploadFile() {
     let stickydiv = createOuterShell(img);
     stickydiv.appendChild(img);
   });
+}
+function downloadFile() {
+  //create anchor
+  //href=canvas->url
+  // anchor click()
+  //anchor remove()
+  //download
+  let a = document.createElement("a");
+  //set filename to its download attribute
+  a.download = "file.jpeg";
+  //convert board to url
+  let url = canvas.toDataURL("image/jpeg;base64");
+  //set as url to href
+  a.href = url;
+  //click the anchor
+  a.click();
+  //remove the anchor
+  a.remove();
 }
