@@ -57,8 +57,10 @@ for (let i = 0; i < toolArr.length; i++) {
       downloadFile();
     } else if (toolname == "undo") {
       currentTool = "undo";
+      console.log("undo clicked");
       undoFN();
     } else if (toolname == "redo") {
+      currentTool = "redo";
       console.log("redo clicked");
       redoFN();
     }
@@ -66,6 +68,9 @@ for (let i = 0; i < toolArr.length; i++) {
 }
 
 //when holding the mouse
+let undoStack = [];
+let redoStack = [];
+
 canvas.addEventListener("mousedown", function (e) {
   let sidx = e.clientX;
   let sidy = e.clientY;
@@ -74,6 +79,13 @@ canvas.addEventListener("mousedown", function (e) {
   let toolbarheight = getYDelta();
   tool.moveTo(sidx, sidy - toolbarheight);
   isDrawing = true;
+  let pointDesc = {
+    desc: "md",
+    x: sidx,
+    y: sidy - toolbarheight,
+    color: tool.strokeStyle,
+  };
+  undoStack.push(pointDesc);
 });
 canvas.addEventListener("mousemove", function (e) {
   if (isDrawing == false) return;
@@ -82,7 +94,14 @@ canvas.addEventListener("mousemove", function (e) {
   let toolbarheight = getYDelta();
   tool.lineTo(eidx, eidy - toolbarheight);
   tool.stroke();
+  let pointDesc = {
+    desc: "mm",
+    x: eidx,
+    y: eidy - toolbarheight,
+  };
+  undoStack.push(pointDesc);
 });
+
 canvas.addEventListener("mouseup", function (e) {
   isDrawing = false;
 });
@@ -205,4 +224,36 @@ function downloadFile() {
   a.click();
   //remove the anchor
   a.remove();
+}
+function redraw() {
+  for (let i = 0; i < undoStack.length; i++) {
+    let { x, y, desc } = undoStack[i];
+    if (desc == "md") {
+      tool.beginPath();
+      tool.moveTo(x, y);
+    } else if (desc == "mm") {
+      tool.lineTo(x, y);
+      tool.stroke();
+    }
+  }
+}
+function undoFN() {
+  // clear screen
+  // pop
+  if (undoStack.length > 0) {
+    tool.clearRect(0, 0, canvas.width, canvas.height);
+    redoStack.push(undoStack.pop());
+    // last removal
+    // redraw
+    redraw();
+  }
+}
+
+function redoFN() {
+  if (redoStack.length > 0) {
+    // screen clear
+    tool.clearRect(0, 0, canvas.width, canvas.height);
+    undoStack.push(redoStack.pop());
+    redraw();
+  }
 }
