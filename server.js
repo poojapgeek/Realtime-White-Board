@@ -9,7 +9,7 @@ let activeConnections = 0;
 
 const PORT = process.env.PORT || 3006;
 
-app.use(express.static('public'));
+app.use(express.static('docs'));
 
 io.on('connection', (socket) => {
   activeConnections++;
